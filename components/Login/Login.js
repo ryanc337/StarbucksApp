@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { View, Text, Button } from 'react-native';
 
 const Login = ({ setMode }) => {
   return(
@@ -8,9 +7,8 @@ const Login = ({ setMode }) => {
       <Text>
         Login
       </Text>
-      <Icon 
-      name="times"
-      type="font-awesome"
+      <Button 
+      title="goback"
       onPress={() => setMode('Landing')}
       />
     </View>

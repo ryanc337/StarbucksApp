@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, CheckBox } from 'react-native';
-import { Icon } from 'react-native-elements';
+import uuidv1 from 'uuid/v1';
 
 const SignUp = ({ setMode }) => {
   const [ userData, setUserData ] = useState({
-    id: '',
+    id: '5',
     firstName: '',
     lastName: '',
     email: '',
@@ -23,15 +23,17 @@ const SignUp = ({ setMode }) => {
 
   const signUp = async () => {
     const { firstName, lastName, email, password, hasAgreedToTC } = userData;
+    const id = uuidv1();
     if (hasAgreedToTC) {
       try {
-        await fetch('http://192.168.1.90:3000/test', {
+        await fetch('https://ag0g52181d.execute-api.us-west-2.amazonaws.com/prod/signup', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            'id': id,
            'first_name': firstName,
            'last_name': lastName,
            'email': email,
@@ -51,10 +53,9 @@ const SignUp = ({ setMode }) => {
         <Text>
           SignUp
         </Text>
-        <Icon 
-        name="times"
-        type="font-awesome"
-        onPress={() => setMode('Landing')}
+        <Button 
+          title="goback"
+          onPress={() => setMode('Landing')}
         />
       </View>
       <View>
