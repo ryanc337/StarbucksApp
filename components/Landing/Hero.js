@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 const style = StyleSheet.create({
   layoutItems: {
@@ -23,7 +23,7 @@ const style = StyleSheet.create({
   }
 })
 
-const Hero = () => {  
+const Hero = ({ setMode }) => {  
   return(
     <View style={style.border}>
       <View>
@@ -34,10 +34,12 @@ const Hero = () => {
       </View>
       <View style={style.layoutItems}>
         <View>
-          <Image 
-            style={{width: 100, height: 20}}
-            source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/signin.png'}}
-          />
+          <TouchableOpacity onPress={() => setMode('Log In')}>
+            <Image 
+              style={{width: 100, height: 20}}
+              source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/signin.png'}}
+            />
+          </TouchableOpacity>
         </View>
         <View>
           <Image 

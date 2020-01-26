@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Hero from './Hero';
+import OfferList from './OfferList'
 
-const Landing = () => {
+const Landing = ({ setMode }) => {
   return (
     <View>
-      <Hero />
+      <Hero setMode={setMode} />
+      <OfferList setMode={setMode} />
     </View>
   )
 };
