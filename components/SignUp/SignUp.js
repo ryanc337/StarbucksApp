@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements';
 
 const SignUp = ({ setMode }) => {
   const [ userData, setUserData ] = useState({
+    id: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -21,12 +22,24 @@ const SignUp = ({ setMode }) => {
   };
 
   const signUp = async () => {
-    const { firstName, lastName, email, password, hasAgreedToTC } = userData
+    const { firstName, lastName, email, password, hasAgreedToTC } = userData;
     if (hasAgreedToTC) {
       try {
-        console.log(userData)
-      } catch {
-        console.log('fail')
+        await fetch('http://192.168.1.90:3000/test', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+           'first_name': firstName,
+           'last_name': lastName,
+           'email': email,
+           'password': password
+          })
+        })
+      } catch (error) {
+        console.log(error)
       }
     } else {
       console.log('agree to TC first')
