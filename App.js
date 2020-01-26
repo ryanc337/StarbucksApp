@@ -9,8 +9,8 @@ const App = () => {
     return (
     <View>
       {mode === 'Landing' && <Landing setMode={setMode}/>}
-      {mode === 'Sign Up' && <SignUp />}
-      {mode === 'Log In' && <Login />}
+      {mode === 'Sign Up' && <SignUp setMode={setMode} />}
+      {mode === 'Log In' && <Login setMode={setMode} />}
     </View>
     );
 }
