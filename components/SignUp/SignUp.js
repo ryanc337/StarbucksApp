@@ -42,6 +42,8 @@ const SignUp = ({ setMode }) => {
         })
       } catch (error) {
         console.log(error)
+      } finally {
+        setMode('Landing');
       }
     } else {
       console.log('agree to TC first')

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Hero from './Hero';
-import OfferList from './OfferList'
+import OfferList from './OfferList';
 
 const Landing = ({ setMode }) => {
   return (

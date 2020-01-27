@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 
-const Login = ({ setMode }) => {
-  const [isSignedIn, setIsSignedIn ] = useState({
-    firstname: '',
-    signedIn: false
-  });
+const Login = ({ setMode, isSignedIn, setIsSignedIn }) => {
   const [signInData, setSignInData ] = useState({
     email: '',
     password: ''
@@ -39,7 +35,6 @@ const Login = ({ setMode }) => {
       if (status === 201) {
         setIsSignedIn(prevState => {
           return ({
-            ...prevState,
             firstname: res.firstname,
             signedIn: true
           })
@@ -49,7 +44,15 @@ const Login = ({ setMode }) => {
       }
     } catch (error) {
       console.log(error);
-    } 
+    } finally {
+      setMode('SignedIn');
+      setSignInData(prevState => {
+        return({
+          email: '',
+          password: ''
+        })
+      })
+    }
   };
 
   return(
@@ -80,11 +83,6 @@ const Login = ({ setMode }) => {
           onPress={signIn}
         />
       </View>
-      {isSignedIn.signedIn && 
-      <View>
-        <Text>Signed In Succesfully as {isSignedIn.firstname}!</Text>
-      </View>
-      }
     </View>
   )
 };
