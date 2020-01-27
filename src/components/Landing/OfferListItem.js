@@ -24,7 +24,7 @@ const style = StyleSheet.create({
     width: 330, 
     marginLeft: 20
   }
-})
+});
 
 const OfferListItem = ({ title, image }) => {
   return(

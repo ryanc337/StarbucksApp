@@ -17,7 +17,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold', 
     fontSize: 16
   }
-})
+});
 
 const OfferList = ({ setMode }) => {
   const titles = [
@@ -25,7 +25,7 @@ const OfferList = ({ setMode }) => {
     'Signing up is easy and fast',
     'Exclusive offers, personalized for you',
     'Rewards in as few as 2-3 visits'
-  ]
+  ];
 
   return (
     <View>
@@ -34,27 +34,26 @@ const OfferList = ({ setMode }) => {
       >
         <View style={{ flex: 1, paddingTop: 20}}>
           <Text style={{marginLeft: 20}}>STARBUCKS REWARDS</Text>
-
           <View style={{height: 230, marginTop: 20}}>
             <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
             >
               <OfferListItem 
-              image={require('../../assets/image0.png')}
-              title={titles[0]}
+                image={require('../../assets/image0.png')}
+                title={titles[0]}
               />
               <OfferListItem 
-              image={require('../../assets/image1.png')}
-              title={titles[1]}
+                image={require('../../assets/image1.png')}
+                title={titles[1]}
               />
               <OfferListItem 
-              image={require('../../assets/image2.png')}
-              title={titles[2]}
+                image={require('../../assets/image2.png')}
+                title={titles[2]}
               />
               <OfferListItem 
-              image={require('../../assets/image3.png')}
-              title={titles[3]}
+                image={require('../../assets/image3.png')}
+                title={titles[3]}
               />
             </ScrollView>
           </View>

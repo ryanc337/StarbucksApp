@@ -28,8 +28,9 @@ const style = StyleSheet.create({
     marginTop: 20
   },
   buttonHolder: {
-    marginTop: 700, 
-    marginLeft: 290, 
+    width: 130, 
+    marginTop: 20,
+    left: '65%',
     width: 130, 
     height: 60, 
     backgroundColor: '#079a4e', 
@@ -37,7 +38,7 @@ const style = StyleSheet.create({
     borderColor: 'black', 
     borderRadius: 30, 
     zIndex: 5, 
-    position: 'absolute'
+    position: 'relative'
   },
   button: {
     paddingLeft: 30, 
@@ -54,9 +55,9 @@ const style = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15
   }
-})
+});
 
-const Login = ({ setMode, setIsSignedIn }) => {
+const Login = ({ setMode, setIsSignedIn, alert, setAlert }) => {
   const [signInData, setSignInData ] = useState({
     email: '',
     password: ''
@@ -85,29 +86,22 @@ const Login = ({ setMode, setIsSignedIn }) => {
          'password': password
         })
       });
-      console.log('clicked');
-      const status = response["status"];
+
       const res = await response.json();
-      if (status === 201) {
-        setIsSignedIn(prevState => {
-          return ({
-            firstname: res.firstname,
-            signedIn: true
-          })
-        });
-      } else {
-        console.log('alert error');
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setMode('SignedIn');
-      setSignInData(prevState => {
-        return({
-          email: '',
-          password: ''
+      setIsSignedIn(prevState => {
+        return ({
+          firstname: res.firstname,
+          signedIn: true
         })
-      })
+      });
+      setMode('SignedIn');
+    } catch (error) {
+      setAlert(prevState => {
+        return({
+          message: 'There was an error signing you in, please try again.',
+          show: true
+        })
+      });
     }
   };
 
@@ -118,11 +112,7 @@ const Login = ({ setMode, setIsSignedIn }) => {
           onPress={() => setMode('Landing')}
           style={style.close}
         >X</Text>
-        <Text
-          style={style.header}
-        >
-          Sign in to Rewards
-        </Text>
+        <Text style={style.header}>Sign in to Rewards</Text>
       </View>
       <View>
         <TextInput 
@@ -139,6 +129,7 @@ const Login = ({ setMode, setIsSignedIn }) => {
           onChangeText={val => onValueChange('password', val)}
         />
       </View>
+        {alert.show && <View><Text>{alert.message}</Text></View>}
       <View style={style.buttonHolder}>
           <TouchableOpacity onPress={signIn}>
             <Text style={style.button}>Sign In</Text>

@@ -21,7 +21,7 @@ const style = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: 1
   }
-})
+});
 
 const Hero = ({ setMode }) => {  
   return(

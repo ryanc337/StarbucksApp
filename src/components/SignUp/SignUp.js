@@ -7,15 +7,14 @@ const style = StyleSheet.create({
     fontFamily: 'sans-serif-light',
     fontSize: 24,
     marginHorizontal: 20,
-    marginBottom: 0,
-    marginVertical: 45,
+    marginTop: 20
   },
   header: {
-    marginHorizontal: 20,
     fontFamily: 'sans-serif-light',
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 15
+    marginHorizontal: 20,
+    marginVertical: 20
   },
   headerBorder: {
     borderBottomColor: 'black',
@@ -25,18 +24,19 @@ const style = StyleSheet.create({
     fontFamily: 'sans-serif-light',
     fontSize: 20,
     fontWeight: 'bold',
-    margin: 15,
+    marginHorizontal: 20,
     marginTop: 20
   },
   buttonHolder: {
-    marginTop: 580, 
-    marginLeft: 290, 
+    top: '90%',
+    left: '65%',
+    bottom: '10%',
     width: 130, 
     height: 60, 
     backgroundColor: '#079a4e', 
     borderWidth: 1, 
     borderColor: 'black', 
-    borderRadius: 30, 
+    borderRadius: 30,  
     position: 'absolute'
   },
   button: {
@@ -44,26 +44,27 @@ const style = StyleSheet.create({
     padding: 15, 
     fontWeight: 'bold', 
     fontSize: 20, 
-    color: '#f6f6f6'
+    color: '#f6f6f6',
   }, 
   input: {
     borderBottomWidth: 1,
     borderColor: 'gray',
-    width: 400,
     fontSize: 14,
-    marginLeft: 15,
+    marginHorizontal: 20,
   },
   checkBox: {
     flexDirection: 'row',
-    margin: 8,
+    marginHorizontal: 15,
+    marginTop: 10
   },
   TC: {
     fontFamily: 'sans-serif-light',
     fontSize: 18,
     marginTop: 3
   }
-})
-const SignUp = ({ setMode }) => {
+});
+
+const SignUp = ({ setMode, alert, setAlert }) => {
   const [ userData, setUserData ] = useState({
     id: '5',
     firstName: '',
@@ -71,7 +72,7 @@ const SignUp = ({ setMode }) => {
     email: '',
     password: '',
     hasAgreedToTC: false
-  })
+  });
 
   const onValueChange = (key, val) => {
     setUserData(prevState => {
@@ -85,7 +86,8 @@ const SignUp = ({ setMode }) => {
   const submit = async () => {
     const { firstName, lastName, email, password, hasAgreedToTC } = userData;
     const id = uuidv1();
-    if (hasAgreedToTC) {
+
+    if (hasAgreedToTC && firstName && lastName && email && password) {
       try {
         await fetch('https://ag0g52181d.execute-api.us-west-2.amazonaws.com/prod/signup', {
           method: 'POST',
@@ -100,17 +102,34 @@ const SignUp = ({ setMode }) => {
            'email': email,
            'password': password
           })
-        })
-        console.log('clicked')
-      } catch (error) {
-        console.log(error)
-      } finally {
+        });
+
         setMode('Landing');
+      } catch (error) {
+        setAlert(prevState => {
+          return({
+            message: 'There has been an Error signing you up, Please try again.',
+            show: true
+          })
+        });
+      } finally {
+        setAlert(prevState => {
+          return({
+            message: '',
+            show: false
+          })
+        });
       }
     } else {
-      console.log('agree to TC first')
+      setAlert(prevState => {
+        return({
+          message: 'Something is incorrect, Please try again',
+          show: true
+        })
+      });
     }
   }
+
   return(
     <View>
       <View style={style.headerBorder}>
@@ -126,6 +145,7 @@ const SignUp = ({ setMode }) => {
       </View>
       <View>
         <View>
+          {alert.show && <View><Text>{alert.message}</Text></View>}
           <Text style={style.sectionTitle}>Personal Info</Text>
           <TextInput 
             style={style.input}

@@ -11,8 +11,8 @@ const style = StyleSheet.create({
     borderRadius: 15
   },
   buttonHolder: {
-    marginTop: 710, 
-    marginLeft: 290, 
+    top: '88%',
+    left: '65%',
     width: 130, 
     height: 60, 
     backgroundColor: '#079a4e', 
@@ -42,8 +42,8 @@ const Landing = ({ setMode }) => {
         </View>
         <View>
           <Image 
-          style={style.image}
-          source={require('../../assets/image5.png')}
+            style={style.image}
+            source={require('../../assets/image5.png')}
           />
         </View>
       </View>

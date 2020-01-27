@@ -11,24 +11,36 @@ const App = () => {
     firstname: '',
     signedIn: false
   });
-    return (
+  const [ alert, setAlert ] = useState({
+    message: '',
+    show: false
+  });
+
+  return (
     <View style={{backgroundColor: '#f6f6f6'}}>
       {mode === 'Landing' && <Landing setMode={setMode}/>}
-      {mode === 'Sign Up' && <SignUp setMode={setMode} />}
+      {mode === 'Sign Up' && 
+      <SignUp 
+        setMode={setMode} 
+        alert={alert}
+        setAlert={setAlert}
+      />}
       {mode === 'Log In' && 
       <Login 
-      setMode={setMode} 
-      isSignedIn={isSignedIn}
-      setIsSignedIn={setIsSignedIn}
+        setMode={setMode} 
+        isSignedIn={isSignedIn}
+        setIsSignedIn={setIsSignedIn}
+        alert={alert}
+        setAlert={setAlert}
       />}
       {mode === 'SignedIn' && 
       <SignedIn 
-      setMode={setMode} 
-      isSignedIn={isSignedIn} 
-      setIsSignedIn={setIsSignedIn}
+        setMode={setMode} 
+        isSignedIn={isSignedIn} 
+        setIsSignedIn={setIsSignedIn}
       />}
     </View>
-    );
+    )
 }
 
 export default App;

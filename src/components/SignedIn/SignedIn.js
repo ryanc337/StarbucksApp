@@ -18,10 +18,9 @@ const SignedIn = ({ setMode, isSignedIn, setIsSignedIn }) => {
       <Text>Signed In as {isSignedIn.firstname}!</Text>
     </View>
     <View>
-      <Button title={'Sign Out'} onPress={handlepress} ></Button>
+      <Button title={'Sign Out'} onPress={() => handlepress()} ></Button>
     </View>
   </View>
-
   )
 };
 
