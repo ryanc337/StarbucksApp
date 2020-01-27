@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import Landing from './components/Landing/Landing';
-import SignUp from './components/SignUp/SignUp';
-import Login from './components/Login/Login';
-import SignedIn from './components/SignedIn/SignedIn';
+import Landing from './src/components/Landing/Landing';
+import SignUp from './src/components/SignUp/SignUp';
+import Login from './src/components/Login/Login';
+import SignedIn from './src/components/SignedIn/SignedIn';
 
 const App = () => { 
   const [mode, setMode] = useState('Landing');
@@ -12,7 +12,7 @@ const App = () => {
     signedIn: false
   });
     return (
-    <View>
+    <View style={{backgroundColor: '#f6f6f6'}}>
       {mode === 'Landing' && <Landing setMode={setMode}/>}
       {mode === 'Sign Up' && <SignUp setMode={setMode} />}
       {mode === 'Log In' && 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 
-const Login = ({ setMode, isSignedIn, setIsSignedIn }) => {
+const Login = ({ setMode, setIsSignedIn }) => {
   const [signInData, setSignInData ] = useState({
     email: '',
     password: ''

@@ -28,15 +28,15 @@ const Hero = ({ setMode }) => {
     <View style={style.border}>
       <View>
         <Text style={style.banner}>
-          It's a great day for coffee
-          <Text>☕</Text>
+          It's a great day for coffee 
+          <Text>{'\n'}☕</Text>
         </Text>
       </View>
       <View style={style.layoutItems}>
         <View>
           <TouchableOpacity onPress={() => setMode('Log In')}>
             <Image 
-              style={{width: 100, height: 20}}
+              style={{width: 100, height: 22}}
               source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/signin.png'}}
             />
           </TouchableOpacity>
