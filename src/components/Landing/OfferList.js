@@ -1,6 +1,23 @@
 import React from 'react';
-import { View, ScrollView, Text, Button, TouchableOpacity, Image } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import OfferListItem from './OfferListItem';
+
+const style = StyleSheet.create({
+  buttonHolder: {
+    margin: 20, 
+    width: 100, 
+    backgroundColor: '#f6f6f6', 
+    borderWidth: 1, 
+    borderColor: 'black', 
+    borderRadius: 18
+  },
+  button: {
+    paddingLeft: 14, 
+    padding: 5, 
+    fontWeight: 'bold', 
+    fontSize: 16
+  }
+})
 
 const OfferList = ({ setMode }) => {
   const titles = [
@@ -43,9 +60,9 @@ const OfferList = ({ setMode }) => {
           </View>
         </View>
       </ScrollView>
-      <View style={{margin: 20, width: 100, backgroundColor: '#f6f6f6', borderWidth: 1, borderColor: 'black', borderRadius: 18}}>
+      <View style={style.buttonHolder}>
         <TouchableOpacity onPress={() => setMode('Sign Up')}>
-          <Text style={{paddingLeft: 14, padding: 5, fontWeight: 'bold', fontSize: 16}}>Join Now</Text>
+          <Text style={style.button}>Join Now</Text>
         </TouchableOpacity>
       </View>
     </View>

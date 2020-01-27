@@ -37,20 +37,20 @@ const Hero = ({ setMode }) => {
           <TouchableOpacity onPress={() => setMode('Log In')}>
             <Image 
               style={{width: 100, height: 22}}
-              source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/signin.png'}}
+              source={require('../../assets/signin.png')}
             />
           </TouchableOpacity>
         </View>
         <View>
           <Image 
             style={{width: 100, height: 20}}
-            source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/inbox.png'}}
+            source={require('../../assets/inbox.png')}
           />
         </View>
         <View style={style.settings}>
           <Image 
             style={{ width: 25, height: 25 }}
-            source={{uri: 'https://assets-interview-project.s3-us-west-2.amazonaws.com/settings.png'}}
+            source={require('../../assets/settings.png')}
           />
         </View>
       </View>
