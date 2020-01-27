@@ -83,6 +83,16 @@ const SignUp = ({ setMode, alert, setAlert }) => {
     })
   };
 
+  const handlePress = () => {
+    setMode('Landing');
+    setAlert(prevState => {
+      return({
+        message: '',
+        show: false
+      })
+    });
+  }
+
   const submit = async () => {
     const { firstName, lastName, email, password, hasAgreedToTC } = userData;
     const id = uuidv1();
@@ -134,7 +144,7 @@ const SignUp = ({ setMode, alert, setAlert }) => {
     <View>
       <View style={style.headerBorder}>
         <Text
-          onPress={() => setMode('Landing')}
+          onPress={handlePress}
           style={style.close}
         >X</Text>
         <Text

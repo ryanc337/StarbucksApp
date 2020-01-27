@@ -72,6 +72,16 @@ const Login = ({ setMode, setIsSignedIn, alert, setAlert }) => {
     })
   };
 
+  const handlePress = () => {
+    setMode('Landing');
+    setAlert(prevState => {
+      return({
+        message: '',
+        show: false
+      })
+    });
+  }
+
   const signIn = async () => {
     const { email, password } = signInData;
     try {
@@ -109,7 +119,7 @@ const Login = ({ setMode, setIsSignedIn, alert, setAlert }) => {
     <View>
       <View style={style.headerBorder}>
         <Text
-          onPress={() => setMode('Landing')}
+          onPress={handlePress}
           style={style.close}
         >X</Text>
         <Text style={style.header}>Sign in to Rewards</Text>
