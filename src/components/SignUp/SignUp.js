@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, CheckBox, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, CheckBox, StyleSheet, TouchableOpacity } from 'react-native';
 import uuidv1 from 'uuid/v1';
 
 const style = StyleSheet.create({
@@ -37,7 +37,6 @@ const style = StyleSheet.create({
     borderWidth: 1, 
     borderColor: 'black', 
     borderRadius: 30, 
-    zIndex: 5, 
     position: 'absolute'
   },
   button: {
@@ -102,6 +101,7 @@ const SignUp = ({ setMode }) => {
            'password': password
           })
         })
+        console.log('clicked')
       } catch (error) {
         console.log(error)
       } finally {

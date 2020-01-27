@@ -1,5 +1,60 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+
+const style = StyleSheet.create({
+  close: {
+    fontFamily: 'sans-serif-light',
+    fontSize: 24,
+    marginHorizontal: 20,
+    marginBottom: 15,
+    marginVertical: 35,
+  },
+  header: {
+    marginHorizontal: 20,
+    fontFamily: 'sans-serif-light',
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 15
+  },
+  headerBorder: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  },
+  sectionTitle: {
+    fontFamily: 'sans-serif-light',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 15,
+    marginTop: 20
+  },
+  buttonHolder: {
+    marginTop: 700, 
+    marginLeft: 290, 
+    width: 130, 
+    height: 60, 
+    backgroundColor: '#079a4e', 
+    borderWidth: 1, 
+    borderColor: 'black', 
+    borderRadius: 30, 
+    zIndex: 5, 
+    position: 'absolute'
+  },
+  button: {
+    paddingLeft: 30, 
+    padding: 15, 
+    fontWeight: 'bold', 
+    fontSize: 20, 
+    color: '#f6f6f6'
+  }, 
+  input: {
+    borderBottomWidth: 1,
+    borderColor: 'gray',
+    width: 400,
+    fontSize: 14,
+    marginLeft: 15,
+    marginTop: 15
+  }
+})
 
 const Login = ({ setMode, setIsSignedIn }) => {
   const [signInData, setSignInData ] = useState({
@@ -30,6 +85,7 @@ const Login = ({ setMode, setIsSignedIn }) => {
          'password': password
         })
       });
+      console.log('clicked');
       const status = response["status"];
       const res = await response.json();
       if (status === 201) {
@@ -57,31 +113,36 @@ const Login = ({ setMode, setIsSignedIn }) => {
 
   return(
     <View>
-      <View>
-        <Text>
-          Login
-        </Text>
-        <Button 
-          title="goback"
+      <View style={style.headerBorder}>
+        <Text
           onPress={() => setMode('Landing')}
-        />
+          style={style.close}
+        >X</Text>
+        <Text
+          style={style.header}
+        >
+          Sign in to Rewards
+        </Text>
       </View>
       <View>
         <TextInput 
+          style={style.input}
+          placeholderTextColor='black'
           placeholder='Email'
           onChangeText={val => onValueChange('email', val)}
         />
-        <TextInput 
+        <TextInput
+          style={style.input}
+          placeholderTextColor='black' 
           placeholder='Password'
           secureTextEntry={true}
           onChangeText={val => onValueChange('password', val)}
         />
       </View>
-      <View>
-        <Button 
-          title={'Sign In'}
-          onPress={signIn}
-        />
+      <View style={style.buttonHolder}>
+          <TouchableOpacity onPress={signIn}>
+            <Text style={style.button}>Sign In</Text>
+          </TouchableOpacity>
       </View>
     </View>
   )
